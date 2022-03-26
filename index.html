@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Garage Sale</title>
+</head>
+
+<body>
+    <main>
+        <form name="garageForm" method="post" onsubmit="return formSubmit();">
+            <!-- /* ---------------- User Information ------------------- */ -->
+            <div class="userInfo">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" />
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="john.doe@example.com" />
+            </div>
+
+            <!-- /* ---------------- Sale Items ------------------- */ -->
+
+            <div class="sale-items">
+                <div class="img-gallery">
+                    <input type="checkbox" id="check1" value="Item1" name="sale">
+                    <img src="/images/flower-pot-3646013_1280.jpg" alt="">
+                    <input type="text" name="art" id="art1" disabled="disabled" placeholder="$">
+                    <div class="counter-item">
+                        <span> # Items </span>
+                        <input type="text" name="count" id="count1" value="1" disabled>
+                    </div>
+                </div>
+                <div class="img-gallery">
+                    <input type="checkbox" id="check2" value="Item2" name="sale">
+                    <img src="/images/flower-pot-3646013_1280.jpg" alt="">
+                    <input type="text" name="art" id="art2" disabled="disabled" placeholder="$">
+                    <div class="counter-item">
+                        <span> # Items </span>
+                        <input type="text" name="count" id="count1" value="1" disabled>
+                    </div>
+                </div>
+                <div class="img-gallery">
+                    <input type="checkbox" id="check3" value="Item3" name="sale">
+                    <img src="/images/flower-pot-3646013_1280.jpg" alt="">
+                    <input type="text" name="art" id="art3" disabled="disabled" placeholder="$">
+                    <div class="counter-item">
+                        <span> # Items </span>
+                        <input type="text" name="count" id="count1" value="1" disabled>
+                    </div>
+                </div>
+                <div class="img-gallery">
+                    <input type="checkbox" id="check4" value="Item4" name="sale">
+                    <img src="/images/flower-pot-3646013_1280.jpg" alt="">
+                    <input type="text" name="art" id="art4" disabled="disabled" placeholder="$">
+                    <div class="counter-item">
+                        <span> # Items </span>
+                        <input type="text" name="count" id="count1" value="1" disabled>
+                    </div>
+                </div>
+                <div class="img-gallery">
+                    <input type="checkbox" id="check5" value="Item5" name="sale">
+                    <img src="/images/flower-pot-3646013_1280.jpg" alt="">
+                    <input type="text" name="art" id="art5" disabled="disabled" placeholder="$">
+                    <div class="counter-item">
+                        <span> # Items </span>
+                        <input type="text" name="count" id="count1" value="1" disabled>
+                    </div>
+                </div>
+                <div class="img-gallery">
+                    <input type="checkbox" id="check6" value="Item6" name="sale">
+                    <img src="/images/flower-pot-3646013_1280.jpg" alt="">
+                    <input type="text" name="art" id="art6" disabled="disabled" placeholder="$">
+                    <div class="counter-item">
+                        <span> # Items </span>
+                        <input type="text" name="count" id="count1" value="1" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /* ---------------- Donation ------------------- */ -->
+            <div class="donation">
+                <h2>Please make your donation!</h2>
+                <h3>How much do you want to donate?</h3>
+                <h4 class="percent">10% of total amount ?</h4>
+                <input type="radio" value="percent" id="radio-1" name="donate" />
+                <h4 class="cash">$10</h4>
+                <input type="radio" value="cash" id="radio-2" name="donate" />
+            </div>
+            <!-- /* ---------------- Credit Card ------------------- */ -->
+            <div class="ccard">
+                <div class="fields">
+                    <label for="cname">Card Name</label>
+                    <input type="text" id="cname" name="cardName" placeholder="Bruce Wayne" />
+                </div>
+                <div class="fields">
+                    <label for="ccnum">Card Number</label>
+                    <input type="text" id="ccnum" name="cardNumber" placeholder="1111-2222-3333-4444" />
+                </div>
+                <div class="fields">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" />
+                </div>
+                <div class="fields">
+                    <label for="expmonth">Exp Month</label>
+                    <select name="expmonth" id="expmonth" placeholder="MM">
+                        <option name="" value="" style="display:none;">MM</option>
+                        <option name="January" value="JAN">January</option>
+                        <option name="February" value="FEB">February</option>
+                        <option name="March" value="MAR">March</option>
+                        <option name="April" value="APR">April</option>
+                        <option name="May" value="MAY">May</option>
+                        <option name="June" value="JUN">June</option>
+                        <option name="July" value="JUL">July</option>
+                        <option name="August" value="AUG">August</option>
+                        <option name="September" value="SEP">September</option>
+                        <option name="October" value="OCT">October</option>
+                        <option name="November" value="NOV">November</option>
+                        <option name="December" value="DEC">December</option>
+                    </select>
+                </div>
+                <div class="fields">
+                    <label for="expyear">Exp Year</label>
+                    <select name="expyear" id="expyear" placeholder="Year">
+                        <option name="" value="" style="display:none;">YY</option>
+                        <option name="2022" value="2022">2022</option>
+                        <option name="2023" value="2023">2023</option>
+                        <option name="2024" value="2024">2024</option>
+                        <option name="2025" value="2025">2025</option>
+                        <option name="2026" value="2026">2026</option>
+                        <option name="2027" value="2027">2027</option>
+                    </select>
+                </div>
+
+                <div class="img"></div>
+            </div>
+            <!-- /* ---------------- Submit ------------------- */ -->
+            <div class="submit">
+                <input type="submit" value="Pay">
+                <input type="reset" value="Clear Form">
+            </div>
+        </form>
+
+        <!-- /* ---------------- Receipt Details ------------------- */ -->
+        <div class="printDetails"></div>
+
+    </main>
+</body>
+
+<script type="text/javascript" src="js/script.js"></script>
+
+</html>
