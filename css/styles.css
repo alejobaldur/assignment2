@@ -2,13 +2,39 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     font-weight: 700;
+    /* background-image: url(/images/cloudy-3492212_1920.jpg); */
+    background-repeat: no-repeat;
+
+}
+
+header {
+    position: relative;
+    display: block;
+    width: 1024px;
+    height: 150px;
+    background: rgba(50, 167, 253, 0.7);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+header h1 {
+    padding: 40px;
+    color: #131179;
 }
 /* Register */
 main {
     width: 1024px;
+    margin: 0 auto;
+    background-image: url(/images/garage-sale-clip\ \(Medium\).png);
+    /* background-repeat: no-repeat; */
+}
+form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 0 auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 10px;
 }
 input{
     border-radius: 5px;
@@ -18,24 +44,43 @@ select {
     height: 50px;
 }
 /* ---------------- User Information ------------------- */
+.register {
+    grid-area: 2 / 1 / 2/ 1;
+}
 .userInfo {
     display: grid;
     grid-template-columns: 20% 80%;
+    grid-template-rows: auto auto auto;
     gap: 10px;
-    width: 460px;
-    height: 140px;
-    background: rgba(62, 252, 206, 0.54);
+    width: 480px;
+    height: 185px;
+    background: rgba(62, 252, 206, 0.74);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     /* margin: 10px; */
-    padding: 20px;
+    padding: 10px;
 }
 
-label[for="name"], label[for="email"]  {
+h4 {
+    /* grid-area: 3 / 2; */
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    color: #D92A2A;
+}
+
+.userInfo label[for="name"], label[for="email"]  {
     padding-top: 20px;
 }
 
-input#name, input#email {
+.userInfo input#name {
+    grid-area: 1 / 2 / 1 / 3;
+}
+.userInfo input#email {
+    grid-area: 2 / 2 / 2 / 3;
+}
+.userInfo input#name, input#email {
+    grid-column: 2;
     height: 50px;
     width: 350px;
     border: 1px solid #327422;
@@ -43,6 +88,9 @@ input#name, input#email {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 /* ---------------- Credit Card ------------------- */
+.credit-card {
+    grid-area: 3 / 1 / 3 / 1;
+}
 .ccard { 
     display: grid;
     grid-template-columns: repeat(3, 33%);
@@ -52,7 +100,7 @@ input#name, input#email {
     /* position: relative; */
     width: 460px;
     height: 280px;
-    background: #3FE4FB;
+    background: rgba(63, 228, 251, 0.8);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     /* margin: 10px; */
@@ -132,21 +180,21 @@ select#expyear {
 }
 
 /* ---------------- Sale Items ------------------- */
+.items-selection {
+    grid-area: 1 / 1 / 1 / 3;
+}
 .sale-items {
-    /* display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: 40% 10% 40% 10%;     */
-    /* position: relative; */
     display: flex;
-    flex-flow: wrap column;
-    width: 500px;
-    height: 520px;
-    background: #FFFFFF;
+    /* flex-flow: row wrap; */
+    justify-content: space-around;
+    width: 1024px;
+    height: 260px;
+    background: rgba(255, 255, 255, 1);
     border: 1px solid #3272D1;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .img-gallery {
@@ -167,11 +215,9 @@ select#expyear {
     height: 30px;
     /* padding: 5px 0 5px 0; */
 }
-
-.down, .up {
-    cursor: pointer;
-    padding: 5px 10px 5px 10px;
-    margin: 1px;
+label {
+    text-align: center;
+    color: #D92A2A;
 }
 input[name="count"] {
     width: 30px;
@@ -182,11 +228,11 @@ input[name="count"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     gap: 10px;
     width: 460px;
-    height: 200px;
-    background: rgba(62, 206, 252, 0.54);
+    height: 280px;
+    background: rgba(62, 206, 252, 0.74);
     border-radius: 10px;
     padding: 20px;
 }
@@ -208,7 +254,10 @@ input[type="reset"] {
     border-radius: 10px;
 }
 
-/* ---------------- Printing Details ------------------- */
+/* ---------------- Donation Details ------------------- */
+.donation-wrap {
+    grid-area: 2 / 2 / 2 / 2;
+}
 .donation {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -216,7 +265,7 @@ input[type="reset"] {
     gap: 5px;
     width: 480px;
     height: 185px;
-    background: rgba(238, 119, 52, 0.54);
+    background: rgba(238, 119, 52, 0.84);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     padding: 10px;
@@ -233,11 +282,14 @@ input[type="reset"] {
     text-align: center;
     color: #D92A2A;
 }
+
+
 .donation .percent {
     grid-area: 3 / 1;
     text-align: right;        
     color: #0E640C;
     margin: 10px;
+    font-size: 14px;
 }
 
 .donation .cash {
@@ -245,6 +297,7 @@ input[type="reset"] {
     text-align: right;        
     color: #0E640C;
     margin: 10px;
+    font-size: 14px;
 }
 
 input[type=radio] {
@@ -264,11 +317,19 @@ input #radio-2 {
 
 /* ---------------- Printing Details ------------------- */
 .printDetails {
-    /* position: relative; */
-    width: 460px;
+    grid-area: 4 / 1 / 4 / 3;
+}
+
+.printFormat {
+
+    width: 980px;
     height: 330px;
     background: rgba(252, 62, 153, 0.54);
     border-radius: 10px;
     padding: 20px;
     /* margin: 10px; */
+}
+
+.table-products {
+    position: absolute;
 }

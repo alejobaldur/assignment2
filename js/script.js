@@ -1,51 +1,27 @@
 
-let arrayItem = document.querySelectorAll('input[name=art]');
 let arrayCheck = document.querySelectorAll('input[name=sale]');
-let fieldCount = document.querySelectorAll('input[name=count]');
+let fieldItemCount = document.querySelectorAll('input[name=count]');
+var priceCheckBox = [33, 400, 10, 70, 60, 20]
 var click = 0;
+let sumProd = 0;
+let sumItem = [];
+let selectedItem = [];
+let donation;
 
-// for (let checkBox of arrayCheck) {
-//     console.log({checkBox});
-// }
-
-for (let i = 0; i <= 6; i++) {
+for (let i = 0; i < 6; i++) {
     arrayCheck[i].addEventListener("click", function (event) {
         if (arrayCheck[i].checked) {
-            arrayItem[i].disabled = false;
-            fieldCount[i].disabled = false;
+            fieldItemCount[i].disabled = false;
         }
-        if (!arrayCheck[i].checked) {
-            arrayItem[i].disabled = true;
-            fieldCount[i].disabled = true;
-            arrayItem[i].value = '';
+        else if (!arrayCheck[i].checked) {
+            fieldItemCount[i].disabled = true;
+            fieldItemCount[i].value = 1;
         }
     }, false);
 }
 
-// function decrease() {
-//     let btnDown = document.getElementsByClassName('down')
-//     if (fieldCount[0].value > 0) {
-//         click = fieldCount[0].value;
-//         click --;
-//         console.log({btnDown});
-//     }
-//     document.getElementById("count1").value = click;
-//     console.log(click);  
-// }
-
-// function increase() {
-//     // let fieldCount = document.querySelectorAll('input[name=count]');
-
-//     if (fieldCount[0].value >= 0) {
-//         click = fieldCount[0].value;
-//         click ++;
-//     }
-//     document.getElementById("count1").value = click;
-//     console.log(click);  
-// }
-
 function formSubmit() {
-
+    var error = '';
     let formName = document.querySelector('#name').value;
     let formEmail = document.querySelector('#email').value;
     let formCname = document.querySelector('#cname').value;
@@ -53,50 +29,143 @@ function formSubmit() {
     let formCvv = document.querySelector('#cvv').value;
     let formExpMonth = document.querySelector('select[name=expmonth]').value;
     let formExpYear = document.querySelector('select[name=expyear]').value;
-    let formRadio = document.querySelectorAll('input[name=donate]');
+    let arrayLabelItem = document.querySelectorAll('label[for=check]');
 
+    const errors = {
+        err1: 'Enter a Name <br>',
+        err2: 'Enter an Email <br>',
+        err3: 'Select one product <br>',
+        err5: 'Enter a CC Name <br>',
+        err6: 'Enter a CC Number <br>',
+        err7: 'Enter the CC CVV <br>',
+        err8: 'Enter the Exp. Month <br>',
+        err9: 'Enter the Exp. Year <br>'
+    };
 
-    for (let checkBox of arrayCheck) {
-        if (checkBox.checked) {
-            console.log(checkBox.value)
+    // Validate Errors
+    if (!formName) {
+        error += errors.err1;
+    }
+    if (!formEmail) {
+        error += errors.err2;
+    }
+    let totalItem = [];
+    let count = [];
+    for (let i = 0; i < 6; i++) {
+        if (arrayCheck[i].checked) {
+            selectedItem[i] = arrayLabelItem[i].firstChild.data;
+            count[i] = parseInt(fieldItemCount[i].value);
+            totalItem[i] = (fieldItemCount[i].value) * (priceCheckBox[i]);
         }
     }
 
-    for (let checkRadio of formRadio ) {
-        if (checkRadio.checked) {
-            console.log(checkRadio.value)
-        }
+    
+    if (!count.length) {
+        error += errors.err3;
     }
 
+    if (!formCname) {
+        error += errors.err5;
+    }
+    let regexCC = /^4[0-9\-]{18}$/
+    if (!regexCC.test(formCcnum)) {
+        error += errors.err6;
+    }
+    if (!formCvv) {
+        error += errors.err7;
+    }
+    if (!formExpMonth) {
+        error += errors.err8;
+    }
+    if (!formExpYear) {
+        error += errors.err9;
+    }
 
-    // let formCheck1 = document.querySelector('#check1');
+    // Display the error(s) if any
+    if (error) {
+        // show the errors
+        document.getElementById('error').innerHTML = error;
+        // clear the output 
+        document.getElementById('receiptDetails').innerHTML = '';
+        // Clean table of products
+        document.getElementById('table-products').innerHTML = '';
+    }
+    else {
+        // calculations
+        let tax = 0;
+        let total = 0;
+        let totalTax = 0;
+        let totalTaxDonation = 0;
+        for (var i in totalItem) {
+            total += totalItem[i];
+        }
 
-    // console.log(formExpMonth.options[formExpMonth.selectedIndex].value);
+        if (total > 100) {
+            tax = (13 * total) / 100;
+            totalTax = (total + tax);
+            totalTaxDonation = totalTax*1.10;
+            donation = totalTax*0.1
+        }
+        else {
+            donation = 10
+            tax = (13 * total) / 100;
+            totalTax = (total + tax);
+            totalTaxDonation = totalTax + 10;
+        }
 
-    // console.log(formExpMonth); // log out the selected value
-    // console.log(formExpYear); // log out the selected value
-    valueItem = '';
+        // Extract Last Digits CCNumber
+        let ccnumLast = 'xxxx-xxxx-xxxx-' + formCcnum.substr(15, 18);
 
-    // for (let itemInput of arrayItem) {
-    //     console.log({itemInput})
-    // }
+        // Display Error on validation
+        document.getElementById('error').innerHTML = '';
 
-    // for (let itemInput of arrayItem) {
-    //    if (itemInput.value) {
-    //        valueItem = itemInput.value
-    //        console.log(valueItem)
-    //    } 
-    //    else {
-    //    console.log('No value on: ', itemInput.id)
-    //     }
-    // }
+        let printDetailsVar = '';
 
+        printDetailsVar += `
+        Name        : ${formName} <br>
+        Email       : ${formEmail} <br>
+        CC Name     : ${formCname} <br>
+        CC Number   : ${ccnumLast} <br>
+        CC Expiration   : ${formExpMonth} / ${formExpYear} <br>
+        Items       :  <br>
+        
+        `;
 
+        document.getElementById('receiptDetails').innerHTML = printDetailsVar;
+        let tablePrint = '';
+        tablePrint += `
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            </tr>
+            <tr>
+            <td id="product"></td>
+            <td id="quantity"></td>
+            <td id="price"></td>
+            </tr>`;
+        document.getElementById('table-products').innerHTML = tablePrint;
 
+        // Sketch table
+        // document.getElementById('receipDetails').innerHTML = '<td>';
+        for (let i = 0; i < 6; i++) {
+            if (selectedItem[i] === undefined || count[i] === undefined) {
+                
+            }
+            else {
+                document.getElementById('product').innerHTML += ' ' + selectedItem[i] + '<br>';
+                document.getElementById('quantity').innerHTML += ' ' + count[i] + '<br>';
+                document.getElementById('price').innerHTML += ' $' + totalItem[i] + '<br>';
+            }
+        }
+        let printTotal = '';
+        printTotal += `
+        Donation   : $${donation.toFixed(2)} <br>
+        Tax        : $${tax} <br>
+        Total      : $${totalTaxDonation.toFixed(2)} <br>
+        `;
+        document.getElementById('receiptTotal').innerHTML = printTotal;
 
-
-
-
+    }
     return false;
 }
 
