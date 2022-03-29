@@ -35,6 +35,7 @@ function formSubmit() {
         err1: 'Enter a Name <br>',
         err2: 'Enter an Email <br>',
         err3: 'Select one product <br>',
+        err4: 'Enter a number in quantity <br>',
         err5: 'Enter a CC Name <br>',
         err6: 'Enter a CC Number <br>',
         err7: 'Enter the CC CVV <br>',
@@ -59,7 +60,12 @@ function formSubmit() {
         }
     }
 
-    
+    let regexQ = /^[0-9]{1,4}$/
+    for (let i = 0; i < 6; i++) {
+        if (!regexQ.test(fieldItemCount[i].value)) {
+            error += errors.err4;
+        }
+    }
     if (!count.length) {
         error += errors.err3;
     }
@@ -87,8 +93,9 @@ function formSubmit() {
         document.getElementById('error').innerHTML = error;
         // clear the output 
         document.getElementById('receiptDetails').innerHTML = '';
-        // Clean table of products
         document.getElementById('table-products').innerHTML = '';
+        document.getElementById('receiptTotal').innerHTML = '';
+
     }
     else {
         // calculations
@@ -103,8 +110,8 @@ function formSubmit() {
         if (total > 100) {
             tax = (13 * total) / 100;
             totalTax = (total + tax);
-            totalTaxDonation = totalTax*1.10;
-            donation = totalTax*0.1
+            donation = total*0.1
+            totalTaxDonation = totalTax + donation;
         }
         else {
             donation = 10

@@ -88,17 +88,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /* ---------------- Donation ------------------- */ -->
-            <div class="donation-wrap">
-                <div class="donation">
-                    <h2>Please make your donation!</h2>
-                    <h3>How much do you want to donate?</h3>
-                    <h4 class="percent">10% of total amount ?</h4>
-                    <input type="radio" value="percent" id="radio-1" name="donate" />
-                    <h4 class="cash">$10</h4>
-                    <input type="radio" value="cash" id="radio-2" name="donate" />
-                </div>
-            </div>
             <!-- /* ---------------- Credit Card ------------------- */ -->
             <div class="credit-card">
                 <div class="ccard">
@@ -149,31 +138,33 @@
                 </div>
             </div>
             <!-- /* ---------------- Submit ------------------- */ -->
-            <div class="submit">
-                <input type="submit" value="Pay">
-                <input type="reset" value="Clear Form">
+            <div class="submit-wrap">
+                <div class="submit">
+                    <input type="submit" value="Pay">
+                    <input type="reset" value="Clear Form">
+                </div>
+            </div>
+            <!-- /* ---------------- Receipt Details ------------------- */ -->
+            <div class="printDetails">
+    
+                <div class="printFormat">
+                    <h3 id="error"></h3>
+                    <p id="receiptDetails"></p>
+    
+                    <table id="table-products">
+                    
+                        <tr>
+                            <td id="product"></td>
+                            <td id="quantity"></td>
+                            <td id="price"></td>
+                        </tr>
+                    </table>
+                    <p id="receiptTotal"></p>
+    
+                </div>
             </div>
         </form>
 
-        <!-- /* ---------------- Receipt Details ------------------- */ -->
-        <div class="printDetails">
-
-            <div class="printFormat">
-                <h3 id="error"></h3>
-                <p id="receiptDetails"></p>
-
-                <table id="table-products">
-                
-                    <tr>
-                        <td id="product"></td>
-                        <td id="quantity"></td>
-                        <td id="price"></td>
-                    </tr>
-                </table>
-                <p id="receiptTotal"></p>
-
-            </div>
-        </div>
 
     </main>
 </body>
